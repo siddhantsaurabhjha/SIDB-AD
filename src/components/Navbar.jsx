@@ -52,28 +52,15 @@ export default function Navbar({ onOpenDownloadModal }) {
             aria-label="SIDB Home"
           >
             <div className="logo-icon-wrapper">
-              <svg className="logo-svg" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="40" height="40" rx="10" fill="#0d1424" stroke="url(#nav-logo-grad)" strokeWidth="1.5" />
-                <path
-                  d="M26 14C26 11.2386 23.7614 9 21 9H16C12.6863 9 10 11.6863 10 15C10 17.5 12 19.5 15 20.2L24 22C27 22.8 29.5 24.5 29.5 28C29.5 31.3137 26.8137 34 23.5 34H17C14.2386 34 12 31.7614 12 29"
-                  stroke="url(#nav-logo-grad)"
-                  strokeWidth="3.2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <circle cx="27" cy="14" r="2" fill="#38bdf8" />
-                <defs>
-                  <linearGradient id="nav-logo-grad" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
-                    <stop stopColor="#38bdf8" />
-                    <stop offset="0.5" stopColor="#818cf8" />
-                    <stop offset="1" stopColor="#c084fc" />
-                  </linearGradient>
-                </defs>
-              </svg>
+              <img
+                src="/assets/logo.png"
+                alt="SIDB Browser Official Logo"
+                className="brand-logo-img"
+              />
             </div>
             <div className="brand-text">
               <span className="brand-name">SIDB</span>
-              <span className="brand-badge">PROMO</span>
+              <span className="brand-badge">BROWSER</span>
             </div>
           </a>
 

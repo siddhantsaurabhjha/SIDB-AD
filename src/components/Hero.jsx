@@ -1,8 +1,48 @@
-import React from 'react';
-import { ExternalLink, Compass, Shield, Zap } from 'lucide-react';
+import React, { useState } from 'react';
+import { ExternalLink, Compass, Shield, Sparkles, Sliders, Layout, Check, Maximize2 } from 'lucide-react';
 import { DOWNLOADS } from '../config/downloads';
 
 export default function Hero() {
+  const [activeTab, setActiveTab] = useState(0);
+
+  const screenshots = [
+    {
+      id: 'start-page',
+      tabTitle: 'SIDB — New Tab',
+      url: 'sidb://newtab',
+      badge: 'Start Dashboard',
+      image: '/assets/s1.png',
+      alt: 'SIDB Browser New Tab Start Page with wallpaper and shortcuts',
+      label: 'Home & New Tab',
+      desc: 'Scenic landscape canvas, unified smart search, quick shortcuts, and continue browsing drawer.',
+      icon: Layout,
+    },
+    {
+      id: 'ai-assistant',
+      tabTitle: 'SIDB — AI Assistant',
+      url: 'sidb://ai-assistant',
+      badge: 'Native AI',
+      image: '/assets/s2.png',
+      alt: 'SIDB Browser Built-in AI Assistant',
+      label: 'SIDB AI Assistant',
+      desc: 'Integrated private AI companion to summarize pages, explain selections, extract key points, and translate.',
+      icon: Sparkles,
+    },
+    {
+      id: 'settings',
+      tabTitle: 'SIDB — Settings',
+      url: 'sidb://settings',
+      badge: 'Customization',
+      image: '/assets/s3.png',
+      alt: 'SIDB Browser Appearance & Theme Settings',
+      label: 'Fluent Settings',
+      desc: 'Custom accent colors, scenery backgrounds, multi-profile management, and zero telemetry toggles.',
+      icon: Sliders,
+    },
+  ];
+
+  const current = screenshots[activeTab];
+
   const handleScrollToFeatures = (e) => {
     e.preventDefault();
     const element = document.querySelector('#features');
@@ -87,7 +127,7 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Premium Interactive Browser Mockup */}
+          {/* Real Interactive Browser Window with Real Screenshots */}
           <div className="hero-mockup-container">
             <div className="browser-mockup glass-panel">
               {/* Browser Window Chrome */}
@@ -98,60 +138,92 @@ export default function Hero() {
                   <span className="dot green" />
                 </div>
 
-                {/* Tabs */}
-                <div className="browser-tabs">
-                  <div className="browser-tab active">
-                    <span className="tab-indicator" />
-                    <span className="tab-title">SIDB — Official Site</span>
-                  </div>
-                  <div className="browser-tab inactive">
-                    <span className="tab-title">MovieBox APK</span>
-                  </div>
+                {/* Interactive Screenshot Tabs */}
+                <div className="browser-tabs" role="tablist" aria-label="SIDB Interface Views">
+                  {screenshots.map((s, idx) => (
+                    <button
+                      key={s.id}
+                      type="button"
+                      role="tab"
+                      aria-selected={activeTab === idx}
+                      onClick={() => setActiveTab(idx)}
+                      className={`browser-tab ${activeTab === idx ? 'active' : 'inactive'}`}
+                    >
+                      {activeTab === idx && <span className="tab-indicator" />}
+                      <span className="tab-title">{s.tabTitle}</span>
+                    </button>
+                  ))}
                 </div>
 
-                {/* Mini Actions */}
+                {/* Mini Controls */}
                 <div className="browser-nav-icons">
-                  <div className="mini-icon-btn"><Shield size={14} className="text-cyan" /></div>
-                  <div className="mini-icon-btn"><Zap size={14} className="text-purple" /></div>
+                  <a
+                    href={DOWNLOADS.SIDB_OFFICIAL_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mini-icon-btn"
+                    title="Open official site"
+                  >
+                    <ExternalLink size={13} className="text-cyan" />
+                  </a>
                 </div>
               </div>
 
-              {/* URL Bar */}
+              {/* URL Omnibox */}
               <div className="browser-omnibox">
                 <div className="omnibox-wrapper">
                   <Shield size={14} className="omnibox-shield" />
-                  <span className="omnibox-text">https://sidb.netlify.app</span>
-                  <span className="omnibox-badge">Official Site</span>
+                  <span className="omnibox-text">{current.url}</span>
+                  <span className="omnibox-badge">{current.badge}</span>
                 </div>
               </div>
 
-              {/* Browser Body Screen */}
-              <div className="browser-screen">
-                <div className="screen-hero">
-                  <div className="screen-glow" />
-                  <div className="screen-tag">SIDB DESKTOP BROWSER</div>
-                  <h2 className="screen-title font-display">Fast. Private. Clutter-Free.</h2>
-                  <p className="screen-sub">Engineered with low memory footprint and built-in protection.</p>
-                  
-                  {/* Floating feature pills in browser view */}
-                  <div className="screen-stats-grid">
-                    <div className="stat-card">
-                      <div className="stat-icon-wrap"><Zap size={18} className="text-cyan" /></div>
-                      <div>
-                        <div className="stat-val">Ultra Fast</div>
-                        <div className="stat-label">Minimal resource usage</div>
-                      </div>
-                    </div>
-                    <div className="stat-card">
-                      <div className="stat-icon-wrap"><Shield size={18} className="text-purple" /></div>
-                      <div>
-                        <div className="stat-val">Zero Trackers</div>
-                        <div className="stat-label">Built-in privacy shield</div>
-                      </div>
-                    </div>
+              {/* Real Screenshot View Area */}
+              <div className="browser-screen-frame">
+                <a
+                  href={DOWNLOADS.SIDB_OFFICIAL_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="screenshot-link"
+                  aria-label={`Open SIDB Browser ${current.label}`}
+                >
+                  <img
+                    src={current.image}
+                    alt={current.alt}
+                    className="browser-screenshot-img"
+                    loading="eager"
+                  />
+                  <div className="screenshot-overlay-hint">
+                    <Maximize2 size={16} />
+                    <span>View Official Site</span>
                   </div>
-                </div>
+                </a>
               </div>
+            </div>
+
+            {/* Interactive Screenshot Switcher Cards */}
+            <div className="screenshot-selector-grid">
+              {screenshots.map((s, idx) => {
+                const Icon = s.icon;
+                const isSelected = activeTab === idx;
+                return (
+                  <button
+                    key={s.id}
+                    type="button"
+                    onClick={() => setActiveTab(idx)}
+                    className={`selector-card ${isSelected ? 'active' : ''}`}
+                    aria-pressed={isSelected}
+                  >
+                    <div className="selector-icon-wrap">
+                      <Icon size={18} className={isSelected ? 'text-cyan' : 'text-dim'} />
+                    </div>
+                    <div className="selector-text">
+                      <div className="selector-label">{s.label}</div>
+                      <div className="selector-desc">{s.desc}</div>
+                    </div>
+                  </button>
+                );
+              })}
             </div>
           </div>
         </div>

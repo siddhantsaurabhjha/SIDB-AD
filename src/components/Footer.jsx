@@ -31,24 +31,11 @@ export default function Footer({ onOpenPrivacyModal, onOpenContactModal }) {
           {/* Brand Info */}
           <div className="footer-brand">
             <div className="footer-logo">
-              <svg className="footer-logo-svg" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="36" height="36" rx="8" fill="#0d1424" stroke="url(#footer-logo-grad)" strokeWidth="1.5" />
-                <path
-                  d="M24 13C24 10.5 22 8.5 19.5 8.5H15C12 8.5 9.5 11 9.5 14C9.5 16.2 11.2 18 14 18.6L22 20.2C24.5 21 26.5 22.5 26.5 25.5C26.5 28.5 24 31 21 31H15.5C13 31 11 29 11 26.5"
-                  stroke="url(#footer-logo-grad)"
-                  strokeWidth="2.8"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <circle cx="24.5" cy="13" r="1.8" fill="#38bdf8" />
-                <defs>
-                  <linearGradient id="footer-logo-grad" x1="0" y1="0" x2="36" y2="36" gradientUnits="userSpaceOnUse">
-                    <stop stopColor="#38bdf8" />
-                    <stop offset="0.5" stopColor="#818cf8" />
-                    <stop offset="1" stopColor="#c084fc" />
-                  </linearGradient>
-                </defs>
-              </svg>
+              <img
+                src="/assets/logo.png"
+                alt="SIDB Browser Official Logo"
+                className="footer-logo-img"
+              />
               <span className="footer-brand-title font-display">SIDB</span>
             </div>
             <p className="footer-tagline">
