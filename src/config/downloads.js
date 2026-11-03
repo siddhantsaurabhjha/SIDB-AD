@@ -4,13 +4,16 @@
  */
 
 export const DOWNLOADS = {
+  // Official SIDB Browser Website URL
+  SIDB_OFFICIAL_URL: 'https://sidb.netlify.app/',
+
   // MovieBox Google Drive Direct Download (triggers download immediately)
   MOVIEBOX_DOWNLOAD_URL: 'https://drive.google.com/uc?export=download&id=15JUijWtabID9-W1zU0vK76vNNhkCmfB8',
 
   // MovieBox Google Drive Shared Viewer URL (fallback in case of browser/Drive confirmation blocks)
   MOVIEBOX_SHARE_URL: 'https://drive.google.com/file/d/15JUijWtabID9-W1zU0vK76vNNhkCmfB8/view?usp=sharing',
 
-  // SIDB Desktop Browser Downloads (empty until official releases are deployed)
+  // SIDB Desktop Browser Downloads
   SIDB_WINDOWS_URL: '',
   SIDB_LINUX_URL: '',
 
@@ -21,4 +24,3 @@ export const DOWNLOADS = {
 };
 
 export default DOWNLOADS;
-

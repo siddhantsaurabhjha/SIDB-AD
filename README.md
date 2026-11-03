@@ -49,13 +49,16 @@ All download links and metadata are centralized in a single configuration file f
 
 ```javascript
 export const DOWNLOADS = {
+  // Official SIDB Browser Website
+  SIDB_OFFICIAL_URL: 'https://sidb.netlify.app/',
+
   // MovieBox Direct Download via Google Drive
   MOVIEBOX_DOWNLOAD_URL: 'https://drive.google.com/uc?export=download&id=15JUijWtabID9-W1zU0vK76vNNhkCmfB8',
 
   // Fallback Google Drive share link for browser confirmation bypass
   MOVIEBOX_SHARE_URL: 'https://drive.google.com/file/d/15JUijWtabID9-W1zU0vK76vNNhkCmfB8/view?usp=sharing',
 
-  // SIDB Desktop release URLs (populated when official builds deploy)
+  // SIDB Desktop release URLs
   SIDB_WINDOWS_URL: '',
   SIDB_LINUX_URL: '',
 

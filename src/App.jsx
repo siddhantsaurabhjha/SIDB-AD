@@ -8,18 +8,17 @@ import Footer from './components/Footer';
 import Modals from './components/Modals';
 
 export default function App() {
-  const [isDownloadOpen, setIsDownloadOpen] = useState(false);
   const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
   const [isContactOpen, setIsContactOpen] = useState(false);
 
   return (
     <div className="app-wrapper">
       {/* Navbar with mobile drawer */}
-      <Navbar onOpenDownloadModal={() => setIsDownloadOpen(true)} />
+      <Navbar />
 
       {/* Main Content Sections */}
       <main id="main-content">
-        <Hero onOpenDownloadModal={() => setIsDownloadOpen(true)} />
+        <Hero />
         <Features />
         <MovieBox />
         <About />
@@ -33,8 +32,6 @@ export default function App() {
 
       {/* Modals & Dialogs */}
       <Modals
-        isDownloadOpen={isDownloadOpen}
-        onCloseDownload={() => setIsDownloadOpen(false)}
         isPrivacyOpen={isPrivacyOpen}
         onClosePrivacy={() => setIsPrivacyOpen(false)}
         isContactOpen={isContactOpen}
@@ -43,4 +40,3 @@ export default function App() {
     </div>
   );
 }
-

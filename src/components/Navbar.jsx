@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ArrowUpRight } from 'lucide-react';
+import { Menu, X, ArrowUpRight, ExternalLink } from 'lucide-react';
+import { DOWNLOADS } from '../config/downloads';
 
 export default function Navbar({ onOpenDownloadModal }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -90,16 +91,18 @@ export default function Navbar({ onOpenDownloadModal }) {
             ))}
           </nav>
 
-          {/* Desktop Action */}
+          {/* Desktop Action: Visit Official SIDB Website */}
           <div className="nav-actions">
-            <button
-              onClick={onOpenDownloadModal}
+            <a
+              href={DOWNLOADS.SIDB_OFFICIAL_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="nav-cta-btn"
-              type="button"
+              aria-label="Visit official SIDB browser website"
             >
-              <span>Download SIDB</span>
-              <span className="coming-soon-chip">Coming Soon</span>
-            </button>
+              <span>Visit SIDB</span>
+              <ExternalLink size={14} className="nav-cta-icon" />
+            </a>
           </div>
 
           {/* Mobile Hamburger Toggle */}
@@ -133,17 +136,17 @@ export default function Navbar({ onOpenDownloadModal }) {
           </nav>
 
           <div className="mobile-drawer-footer">
-            <button
-              onClick={() => {
-                setIsOpen(false);
-                onOpenDownloadModal();
-              }}
+            <a
+              href={DOWNLOADS.SIDB_OFFICIAL_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setIsOpen(false)}
               className="btn-primary w-full"
-              type="button"
+              aria-label="Visit official SIDB browser website"
             >
-              <span>Download SIDB</span>
-              <span className="pill-badge-small">Coming Soon</span>
-            </button>
+              <span>Visit SIDB</span>
+              <ExternalLink size={16} />
+            </a>
             <p className="mobile-drawer-meta">Available for Windows &amp; Linux</p>
           </div>
         </div>
@@ -151,4 +154,3 @@ export default function Navbar({ onOpenDownloadModal }) {
     </header>
   );
 }
-

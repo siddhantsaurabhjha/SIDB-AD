@@ -1,21 +1,8 @@
 import React from 'react';
-import { Download, Compass, Shield, Zap } from 'lucide-react';
+import { ExternalLink, Compass, Shield, Zap } from 'lucide-react';
 import { DOWNLOADS } from '../config/downloads';
 
-export default function Hero({ onOpenDownloadModal }) {
-  const hasWindowsUrl = Boolean(DOWNLOADS.SIDB_WINDOWS_URL);
-  const hasLinuxUrl = Boolean(DOWNLOADS.SIDB_LINUX_URL);
-  const hasOfficialUrl = hasWindowsUrl || hasLinuxUrl;
-
-  const handleDownloadClick = (e) => {
-    e.preventDefault();
-    if (!hasOfficialUrl) {
-      onOpenDownloadModal();
-    } else {
-      window.open(DOWNLOADS.SIDB_WINDOWS_URL || DOWNLOADS.SIDB_LINUX_URL, '_blank');
-    }
-  };
-
+export default function Hero() {
   const handleScrollToFeatures = (e) => {
     e.preventDefault();
     const element = document.querySelector('#features');
@@ -59,15 +46,16 @@ export default function Hero({ onOpenDownloadModal }) {
 
           {/* CTA Buttons */}
           <div className="hero-cta-group">
-            <button
-              onClick={handleDownloadClick}
+            <a
+              href={DOWNLOADS.SIDB_OFFICIAL_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn-primary hero-btn-main"
-              type="button"
+              aria-label="Visit official SIDB browser website"
             >
-              <Download size={20} />
-              <span>Download SIDB</span>
-              {!hasOfficialUrl && <span className="btn-tag">Coming Soon</span>}
-            </button>
+              <span>Visit SIDB</span>
+              <ExternalLink size={18} />
+            </a>
 
             <a
               href="#features"
@@ -114,7 +102,7 @@ export default function Hero({ onOpenDownloadModal }) {
                 <div className="browser-tabs">
                   <div className="browser-tab active">
                     <span className="tab-indicator" />
-                    <span className="tab-title">SIDB — Welcome</span>
+                    <span className="tab-title">SIDB — Official Site</span>
                   </div>
                   <div className="browser-tab inactive">
                     <span className="tab-title">MovieBox APK</span>
@@ -132,8 +120,8 @@ export default function Hero({ onOpenDownloadModal }) {
               <div className="browser-omnibox">
                 <div className="omnibox-wrapper">
                   <Shield size={14} className="omnibox-shield" />
-                  <span className="omnibox-text">https://sidb.app</span>
-                  <span className="omnibox-badge">Private &amp; Shielded</span>
+                  <span className="omnibox-text">https://sidb.netlify.app</span>
+                  <span className="omnibox-badge">Official Site</span>
                 </div>
               </div>
 
@@ -141,7 +129,7 @@ export default function Hero({ onOpenDownloadModal }) {
               <div className="browser-screen">
                 <div className="screen-hero">
                   <div className="screen-glow" />
-                  <div className="screen-tag">SIDB DESKTOP CORE</div>
+                  <div className="screen-tag">SIDB DESKTOP BROWSER</div>
                   <h2 className="screen-title font-display">Fast. Private. Clutter-Free.</h2>
                   <p className="screen-sub">Engineered with low memory footprint and built-in protection.</p>
                   
@@ -171,4 +159,3 @@ export default function Hero({ onOpenDownloadModal }) {
     </section>
   );
 }
-

@@ -1,94 +1,15 @@
-import React, { useState } from 'react';
-import { X, CheckCircle2, Shield, Mail, Sparkles, Terminal } from 'lucide-react';
+import React from 'react';
+import { X, Shield, Mail, Terminal } from 'lucide-react';
+import { DOWNLOADS } from '../config/downloads';
 
 export default function Modals({
-  isDownloadOpen,
-  onCloseDownload,
   isPrivacyOpen,
   onClosePrivacy,
   isContactOpen,
   onCloseContact,
 }) {
-  const [notifyEmail, setNotifyEmail] = useState('');
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleNotifySubmit = (e) => {
-    e.preventDefault();
-    if (notifyEmail.trim()) {
-      setSubmitted(true);
-      setTimeout(() => {
-        setSubmitted(false);
-        setNotifyEmail('');
-        onCloseDownload();
-      }, 2500);
-    }
-  };
-
   return (
     <>
-      {/* SIDB Desktop Coming Soon Modal */}
-      {isDownloadOpen && (
-        <div className="modal-backdrop" onClick={onCloseDownload} role="dialog" aria-modal="true">
-          <div className="modal-card glass-panel" onClick={(e) => e.stopPropagation()}>
-            <button className="modal-close-btn" onClick={onCloseDownload} aria-label="Close dialog">
-              <X size={20} />
-            </button>
-
-            <div className="modal-header">
-              <div className="modal-icon-badge">
-                <Sparkles size={24} className="text-cyan" />
-              </div>
-              <h3 className="modal-title font-display">SIDB Desktop is Coming Soon</h3>
-              <p className="modal-description">
-                Official release builds for Windows and Linux are undergoing final optimization and security testing.
-              </p>
-            </div>
-
-            <div className="modal-platforms-box">
-              <div className="modal-platform-card">
-                <span className="platform-name">Windows</span>
-                <span className="platform-status">Ready Soon (.msi / .exe)</span>
-              </div>
-              <div className="modal-platform-card">
-                <span className="platform-name">Linux</span>
-                <span className="platform-status">Ready Soon (.deb / .AppImage)</span>
-              </div>
-            </div>
-
-            {submitted ? (
-              <div className="modal-success-box">
-                <CheckCircle2 size={24} className="text-emerald" />
-                <p>Thank you! You'll be notified immediately when the installer is released.</p>
-              </div>
-            ) : (
-              <form onSubmit={handleNotifySubmit} className="modal-notify-form">
-                <label htmlFor="notify-email" className="modal-form-label">
-                  Get notified when release drops:
-                </label>
-                <div className="input-group">
-                  <input
-                    id="notify-email"
-                    type="email"
-                    placeholder="Enter your email address"
-                    value={notifyEmail}
-                    onChange={(e) => setNotifyEmail(e.target.value)}
-                    required
-                    className="modal-input"
-                  />
-                  <button type="submit" className="btn-primary modal-btn">
-                    Notify Me
-                  </button>
-                </div>
-              </form>
-            )}
-
-            <div className="modal-footer-note">
-              <span>Meanwhile, you can explore features or download MovieBox for Android below!</span>
-            </div>
-          </div>
-        </div>
-      )}
-
       {/* Privacy Policy Modal */}
       {isPrivacyOpen && (
         <div className="modal-backdrop" onClick={onClosePrivacy} role="dialog" aria-modal="true">
@@ -123,7 +44,7 @@ export default function Modals({
               <div className="privacy-item">
                 <h4>3. Third-Party Services</h4>
                 <p>
-                  The promotional landing page does not deploy third-party trackers or ad pixels. External links (such as Google Drive for companion packages) follow their respective host privacy policies.
+                  The promotional landing page does not deploy third-party trackers or ad pixels. External links (such as Google Drive for companion packages or official mirrors) follow their respective host privacy policies.
                 </p>
               </div>
 
@@ -198,4 +119,3 @@ export default function Modals({
     </>
   );
 }
-
